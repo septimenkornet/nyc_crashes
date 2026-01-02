@@ -30,7 +30,8 @@ df = df[(
                     (df['NUMBER OF CYCLIST KILLED'] > 0)
          ) &
          (
-                    df['BOROUGH' == 'MANHATTAN']
+             (df['LATITUDE'] != '') &
+             (df['LONGITUDE'] != '')
          )
 )]
 
