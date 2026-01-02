@@ -32,7 +32,7 @@ df = df[(
          (
                     df['BOROUGH' == 'MANHATTAN']
          )
-        ]
+)]
 
 gdf = gpd.GeoDataFrame(
     df,
