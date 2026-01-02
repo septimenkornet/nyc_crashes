@@ -128,7 +128,7 @@ fetch('nyc_crashes.geojson')
         // 3. Process and add markers using L.geoJSON
         L.geoJSON(data, {
             onEachFeature: function (feature, layer) {
-                console.print(feature['ZIP CODE'])
+                console.log(feature['ZIP CODE'])
                 layer.bindPopup(
                     getlabel(feature)
                 )
