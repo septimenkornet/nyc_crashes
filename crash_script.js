@@ -128,7 +128,6 @@ fetch('nyc_crashes.geojson')
         // 3. Process and add markers using L.geoJSON
         L.geoJSON(data, {
             onEachFeature: function (feature, layer) {
-                console.log(feature['BOROUGH']);
                 layer.bindPopup(
                     getlabel(feature)
                 );
