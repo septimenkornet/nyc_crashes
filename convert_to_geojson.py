@@ -22,11 +22,18 @@ all_columns = ['CRASH DATE', 'CRASH TIME', 'BOROUGH', 'ZIP CODE', 'LATITUDE',
 
 df = pandas.read_csv(sys.argv[1])
 
-df = df[(df['NUMBER OF PEDESTRIANS INJURED'] > 0) |
-        (df['NUMBER OF PEDESTRIANS KILLED'] > 0) |
-        (df['NUMBER OF CYCLIST INJURED'] > 0) |
-        (df['NUMBER OF CYCLIST KILLED'] > 0)
+df = df[(
+         (
+                    (df['NUMBER OF PEDESTRIANS INJURED'] > 0) |
+                    (df['NUMBER OF PEDESTRIANS KILLED'] > 0) |
+                    (df['NUMBER OF CYCLIST INJURED'] > 0) |
+                    (df['NUMBER OF CYCLIST KILLED'] > 0)
+         ) &
+         (
+                    df['BOROUGH' == 'MANHATTAN']
+         )
         ]
+
 gdf = gpd.GeoDataFrame(
     df,
     geometry=gpd.points_from_xy(df.LATITUDE, df.LONGITUDE),
