@@ -12,6 +12,14 @@ const categories = [ // [label, color of marker]
 	['injured', '#0000ff'],
 ];
 
+const vehicle_types = [
+    VEHICLE TYPE CODE 1',
+    'VEHICLE TYPE CODE 2',
+    'VEHICLE TYPE CODE 3',
+    'VEHICLE TYPE CODE 4',
+    'VEHICLE TYPE CODE 5'
+]
+
 var getcategory = function (feature) {
     if (
         Number(feature.properties['NUMBER OF PEDESTRIANS KILLED']) > 0 |
@@ -43,18 +51,41 @@ var getboundary = function (city, map) { // Add municipal boundary
 var getlabel = function (feature) { // For use constructing popup
     var retstr = feature.properties["CRASH DATE"] + ': '
     retstr += getcategory(feature)[0];
+    var commas = false;
+    if (
+        Number(feature.properties['NUMBER OF PEDESTRIANS KILLED']) > 0
+    ) {
+        retstr += 'pedestrian killed';
+        commas = true;
+    }
+    if (
+        Number(feature.properties['NUMBER OF PEDESTRIANS INJURED']) > 0
+    ) {
+        retstr += `${commas ? ', ' : ''}pedestrian injured`;
+        commas = true;
+    }
+    if (
+        Number(feature.properties['NUMBER OF CYCLIST KILLED']) > 0
+    ) {
+        retstr += `${commas ? ', ' : ''}cyclist killed`;
+        commas = true;
+    }
+    if (
+        Number(feature.properties['NUMBER OF CYCLIST INJURED']) > 0
+    ) {
+        retstr += `${commas ? ', ' : ''}cyclist injured`;
+        commas = true;
+    }
     retstr += "<br>Action[s] reported:";
     for (var i = 0; i < actions.length; i++) {
-    	action = feature.properties[actions[i]];
-    	retstr +=  `<br>${i + 1}. ${action}`;
+        action = feature.properties[actions[i]];
+        retstr +=  `<br>${i + 1}. ${action}`;
     }
-/*
-    retstr += "<br><i>Victim action[s] reported:</i>";
-    for (var i = 0; i < victimactions.length; i++) {
-    	action = feature.properties[victimactions[i]];
-    	retstr +=  `<br>${i + 1}. ${action}`;
-	}
-*/
+    var types = []
+    for (var i = 0; i < vehicle_types.length; i++) {
+        types.push(feature.properties[vehicle_types[i]])
+        }
+    retstr += `Vehicle type[s]: ${types.join()}`
 	return retstr
 }
 

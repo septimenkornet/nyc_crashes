@@ -31,8 +31,7 @@ df = df[(
          ) &
          (
              (df['LATITUDE'] != '') &
-             (df['LONGITUDE'] != '') &
-             (df['ZIP CODE'] == 10025 )
+             (df['LONGITUDE'] != '')
          )
 )]
 
@@ -41,7 +40,5 @@ gdf = gpd.GeoDataFrame(
     geometry=gpd.points_from_xy(df.LONGITUDE, df.LATITUDE),
     crs="EPSG:4326"  # WGS84 standard CRS for lat/lon
 )
-
-# gdf['CRASH DATE'] = gdf['CRASH DATE'].dt.strftime('%Y-%m-%d')
 
 print(gdf.to_json(indent=4))
