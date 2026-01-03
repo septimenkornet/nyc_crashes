@@ -92,7 +92,7 @@ var getlabel = function (feature) { // For use constructing popup
             types.push(vtype)
         }
     }
-    retstr += `Vehicle type[s]: ${types.join()}`
+    retstr += `<br>Vehicle type[s]: ${types.join()}`
 	return retstr
 }
 
