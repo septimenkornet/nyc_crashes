@@ -13,7 +13,7 @@ const categories = [ // [label, color of marker]
 ];
 
 const vehicle_types = [
-    VEHICLE TYPE CODE 1',
+    'VEHICLE TYPE CODE 1',
     'VEHICLE TYPE CODE 2',
     'VEHICLE TYPE CODE 3',
     'VEHICLE TYPE CODE 4',
