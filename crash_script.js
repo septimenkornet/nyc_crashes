@@ -83,7 +83,7 @@ var getlabel = function (feature) { // For use constructing popup
             acts.push(action)
         }
     }
-    retstr +=  `<br>Action[s] reported: ${acts.join()}`;
+    retstr +=  `<br>Action[s] reported: ${acts.join(', ')}`;
 
     var types = []
     for (var i = 0; i < vehicle_types.length; i++) {
@@ -92,7 +92,7 @@ var getlabel = function (feature) { // For use constructing popup
             types.push(vtype)
         }
     }
-    retstr += `<br>Vehicle type[s]: ${types.join()}`
+    retstr += `<br>Vehicle type[s]: ${types.join(', ')}`
 	return retstr
 }
 
