@@ -50,7 +50,6 @@ var getboundary = function (city, map) { // Add municipal boundary
 
 var getlabel = function (feature) { // For use constructing popup
     var retstr = feature.properties["CRASH DATE"] + ': '
-    retstr += getcategory(feature)[0];
     var commas = false;
     if (
         Number(feature.properties['NUMBER OF PEDESTRIANS KILLED']) > 0
@@ -76,15 +75,23 @@ var getlabel = function (feature) { // For use constructing popup
         retstr += `${commas ? ', ' : ''}cyclist injured`;
         commas = true;
     }
-    retstr += "<br>Action[s] reported:";
+
+    var acts = [];
     for (var i = 0; i < actions.length; i++) {
         action = feature.properties[actions[i]];
-        retstr +=  `<br>${i + 1}. ${action}`;
+        if (action) {
+            acts.push(action)
+        }
     }
+    retstr +=  `<br>Action[s] reported: ${acts.join()}`;
+
     var types = []
     for (var i = 0; i < vehicle_types.length; i++) {
-        types.push(feature.properties[vehicle_types[i]])
+        vtype = feature.properties[vehicle_types[i]];
+        if (vtype) {
+            types.push(vtype)
         }
+    }
     retstr += `Vehicle type[s]: ${types.join()}`
 	return retstr
 }
