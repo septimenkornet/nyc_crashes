@@ -116,7 +116,7 @@ var getMarker = function (feature, latlng) {
 }
 
 // Initialize the map
-const map = L.map('mapid').setView([40.7128, -74.0060], 12);
+const map = L.map('mapid').setView([40.7128, -73.835452], 12);
 
 // Add municipal boundaries
  cities.forEach((city) => {
