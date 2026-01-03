@@ -129,7 +129,7 @@ fetch('nyc_crashes.geojson')
                     getlabel(feature)
                 );
             },
-            pointToLayer(feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 return getMarker(feature, latlng)
             }
         }).addTo(markers);
