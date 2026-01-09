@@ -40,6 +40,7 @@ var getboundary = function (city, map) { // Add municipal boundary
     .then(function(json) {
         boundaryFeature = json[0].geojson;
         L.geoJSON(boundaryFeature,{
+            interactive: false,   // Can't click it
             color: 'blue',        // Outline color
             fillColor: '#00004', // Fill color
             fillOpacity: 0.10     // Fill opacity (0.0 to 1.0)
